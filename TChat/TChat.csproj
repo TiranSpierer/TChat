@@ -17,4 +17,9 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
+    <ProjectReference Include="..\ExportService\ExportService.csproj" />
+  </ItemGroup>
+
 </Project>

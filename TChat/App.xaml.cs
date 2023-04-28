@@ -1,12 +1,9 @@
 ﻿using Prism.Ioc;
 using Prism.Unity;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
+using Core.Interfaces;
+using ExportService;
 
 namespace TChat
 {
@@ -17,12 +14,14 @@ namespace TChat
     {
         protected override Window CreateShell()
         {
-            throw new NotImplementedException();
+            var w = Container.Resolve<MainWindow>();
+            return w;
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            throw new NotImplementedException();
+            containerRegistry.RegisterSingleton<Core.Interfaces.IExportChatService, ExportChatService>();
+
         }
     }
 }
