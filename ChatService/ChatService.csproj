@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core.DataModels\Core.DataModels.csproj" />
+    <ProjectReference Include="..\Core.EventAggregator\Core.EventAggregator.csproj" />
+    <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

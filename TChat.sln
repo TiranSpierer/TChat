@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TChat", "TChat\TChat.csproj", "{3580426F-381F-400C-9F1A-BE21927207F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TChat", "TChat\TChat.csproj", "{3580426F-381F-400C-9F1A-BE21927207F7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5D7F215D-964C-41BD-924E-B12DEFDB4863}"
 EndProject
@@ -15,13 +15,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{ADB98BB6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Buisness", "Buisness", "{3940F652-B674-4DED-BD75-9234BD0BF180}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Interfaces", "Core.Interfaces\Core.Interfaces.csproj", "{C4984DFB-E52D-42CF-B556-F59F449004CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Interfaces", "Core.Interfaces\Core.Interfaces.csproj", "{C4984DFB-E52D-42CF-B556-F59F449004CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.EventAggregator", "Core.EventAggregator\Core.EventAggregator.csproj", "{4CDC104A-D906-4265-ACC2-A083F253ABB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.EventAggregator", "Core.EventAggregator\Core.EventAggregator.csproj", "{4CDC104A-D906-4265-ACC2-A083F253ABB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.DataModels", "Core.DataModels\Core.DataModels.csproj", "{353BD328-E675-42A9-BBBF-9763CA3DFF92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.DataModels", "Core.DataModels\Core.DataModels.csproj", "{353BD328-E675-42A9-BBBF-9763CA3DFF92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExportService", "ExportService\ExportService.csproj", "{1A29DF7F-B956-4A67-8225-1377FF379586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportService", "ExportService\ExportService.csproj", "{1A29DF7F-B956-4A67-8225-1377FF379586}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataService", "DataService\DataService.csproj", "{8F7ABC03-95C8-4024-AA21-D62240F42F10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatService", "ChatService\ChatService.csproj", "{B799D97A-91B5-4F6D-881A-1E1C981B5291}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.State", "Core.State\Core.State.csproj", "{1AA0BDF6-82D2-4FAB-809E-4B52CD0FB636}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +55,18 @@ Global
 		{1A29DF7F-B956-4A67-8225-1377FF379586}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A29DF7F-B956-4A67-8225-1377FF379586}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A29DF7F-B956-4A67-8225-1377FF379586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7ABC03-95C8-4024-AA21-D62240F42F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7ABC03-95C8-4024-AA21-D62240F42F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7ABC03-95C8-4024-AA21-D62240F42F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7ABC03-95C8-4024-AA21-D62240F42F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B799D97A-91B5-4F6D-881A-1E1C981B5291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B799D97A-91B5-4F6D-881A-1E1C981B5291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B799D97A-91B5-4F6D-881A-1E1C981B5291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B799D97A-91B5-4F6D-881A-1E1C981B5291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA0BDF6-82D2-4FAB-809E-4B52CD0FB636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA0BDF6-82D2-4FAB-809E-4B52CD0FB636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA0BDF6-82D2-4FAB-809E-4B52CD0FB636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA0BDF6-82D2-4FAB-809E-4B52CD0FB636}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +77,9 @@ Global
 		{4CDC104A-D906-4265-ACC2-A083F253ABB9} = {5D7F215D-964C-41BD-924E-B12DEFDB4863}
 		{353BD328-E675-42A9-BBBF-9763CA3DFF92} = {5D7F215D-964C-41BD-924E-B12DEFDB4863}
 		{1A29DF7F-B956-4A67-8225-1377FF379586} = {B151159C-52BC-4D03-9286-587D7AFB7C0A}
+		{8F7ABC03-95C8-4024-AA21-D62240F42F10} = {B151159C-52BC-4D03-9286-587D7AFB7C0A}
+		{B799D97A-91B5-4F6D-881A-1E1C981B5291} = {B151159C-52BC-4D03-9286-587D7AFB7C0A}
+		{1AA0BDF6-82D2-4FAB-809E-4B52CD0FB636} = {5D7F215D-964C-41BD-924E-B12DEFDB4863}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {18529F02-821D-4A29-8328-EE54F8FDD205}

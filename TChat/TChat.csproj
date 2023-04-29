@@ -13,12 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\ChatService\ChatService.csproj" />
     <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
+    <ProjectReference Include="..\Core.State\Core.State.csproj" />
+    <ProjectReference Include="..\DataService\DataService.csproj" />
     <ProjectReference Include="..\ExportService\ExportService.csproj" />
   </ItemGroup>
 

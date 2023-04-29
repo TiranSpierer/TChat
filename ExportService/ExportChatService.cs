@@ -1,15 +1,12 @@
 ﻿using Core.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Core.DataModels;
 
 namespace ExportService;
 
 public class ExportChatService : IExportChatService
 {
-    public void Export()
+    public void Export(Chat chat)
     {
         throw new NotImplementedException();
     }
