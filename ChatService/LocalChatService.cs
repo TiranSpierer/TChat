@@ -11,7 +11,7 @@ namespace ChatService;
 
 public class LocalChatService : IChatService
 {
-    private const int Port = 1234;
+    private const int Port = 8888;
     private readonly IPAddress _ipAddress = IPAddress.Parse("127.0.0.1");
     private TcpClient _client;
     private NetworkStream _stream;
