@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChatService\ChatService.csproj" />
-    <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Net\Core.Net.csproj" />
   </ItemGroup>
 
 </Project>
