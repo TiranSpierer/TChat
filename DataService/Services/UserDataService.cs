@@ -7,8 +7,9 @@ using System.Linq;
 
 namespace DataService.Services;
 
-public class UserDataService : IUserDataService
+public class UserDataService : IUserDataService<T> where T : IMongoDocument
 {
+    private readonly IMongoDbRepository<T> _repository;
 
     public UserDataService()
     {

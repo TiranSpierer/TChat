@@ -59,29 +59,30 @@
 //}
 
 
-using Core.Interfaces;
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Interfaces;
+
+namespace ChatService;
 
 public class ChatClient : IChatClient
 {
-    private readonly string _serverIp;
-    private readonly int _serverPort;
-    private TcpClient _client;
-    private NetworkStream _stream;
-    private StreamReader _reader;
-    private StreamWriter _writer;
+    private readonly string        _serverIp;
+    private readonly int           _serverPort;
+    private          TcpClient     _client;
+    private          NetworkStream _stream;
+    private          StreamReader  _reader;
+    private          StreamWriter  _writer;
 
     public event Action<string> MessageReceived;
 
     public ChatClient(string serverIp, int serverPort)
     {
-        _serverIp = serverIp;
+        _serverIp   = serverIp;
         _serverPort = serverPort;
         Task.Run(StartAsync);
     }

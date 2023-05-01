@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Context\" />
+  </ItemGroup>
+
 </Project>

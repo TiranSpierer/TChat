@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DataService.Repository;
-internal interface IRepository<T> where T : class
+public interface IRepository<T> where T : class
     { 
     Task CreateAsync(T entity);
 

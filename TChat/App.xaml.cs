@@ -24,6 +24,15 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IChatService, LocalChatService>();
         containerRegistry.RegisterSingleton<IExportChatService, ExportChatService>();
         containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
+
+        // Register IMongoDbContext
+        containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext("mongodb://localhost:27017", "mydatabase"));
+
+        // Register IMongoDbRepository<T>
+        containerRegistry.Register(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
+
+        // Register IMongoDbDataService<T>
+        containerRegistry.Register(typeof(IMongoDbDataService<>), typeof(MongoDbDataService<>));
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
