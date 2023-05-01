@@ -8,6 +8,7 @@ using ChatService;
 using Prism.Modularity;
 using DataService.Services;
 using Core.Interfaces.DataServices;
+using DataService.Repository;
 
 namespace TChat;
 
@@ -25,13 +26,9 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IExportChatService, ExportChatService>();
         containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
 
-        // Register IMongoDbContext
+        // Database
         containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext("mongodb://localhost:27017", "mydatabase"));
-
-        // Register IMongoDbRepository<T>
         containerRegistry.Register(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
-
-        // Register IMongoDbDataService<T>
         containerRegistry.Register(typeof(IMongoDbDataService<>), typeof(MongoDbDataService<>));
     }
 

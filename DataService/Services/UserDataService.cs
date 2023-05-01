@@ -7,13 +7,12 @@ using System.Linq;
 
 namespace DataService.Services;
 
-public class UserDataService : IUserDataService<T> where T : IMongoDocument
+public class UserDataService : IUserDataService
 {
-    private readonly IMongoDbRepository<T> _repository;
 
     public UserDataService()
     {
-        
+
     }
 
     public void AddUser(User user)

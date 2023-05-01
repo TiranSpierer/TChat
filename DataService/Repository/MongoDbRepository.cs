@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core.Interfaces.DataServices;
 
-internal class MongoDbRepository<T> : IMongoDbRepository<T>
+namespace DataService.Repository;
+
+public class MongoDbRepository<T> : IMongoDbRepository<T>
 {
     private readonly IMongoCollection<T> _collection;
 

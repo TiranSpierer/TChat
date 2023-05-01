@@ -1,7 +1,9 @@
 ﻿using Core.Interfaces.DataServices;
 using MongoDB.Driver;
 
-internal class MongoDbContext : IMongoDbContext
+namespace DataService.Context;
+
+public class MongoDbContext : IMongoDbContext
 {
     private readonly IMongoDatabase _database;
 
