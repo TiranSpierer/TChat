@@ -16,12 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppConfig\Configuration.csproj" />
     <ProjectReference Include="..\ChatService\ChatService.csproj" />
     <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
     <ProjectReference Include="..\Core.State\Core.State.csproj" />
-    <ProjectReference Include="..\DataService\DataAccess.csproj" />
     <ProjectReference Include="..\ExportService\ExportService.csproj" />
+	<ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+	<ProjectReference Include="..\Configuration\Configuration.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

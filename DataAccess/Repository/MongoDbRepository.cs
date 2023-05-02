@@ -7,7 +7,7 @@ using Core.Interfaces.DataServices;
 using System.Diagnostics;
 using System;
 
-namespace DataService.Repository;
+namespace DataAccess.Repository;
 
 public class MongoDbRepository : IMongoDbRepository
 {

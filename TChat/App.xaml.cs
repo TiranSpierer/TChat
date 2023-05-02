@@ -7,10 +7,10 @@ using ExportService;
 using TChat.Views;
 using ChatService;
 using Prism.Modularity;
-using DataService.Services;
+using DataAccess.Services;
 using Core.Interfaces.DataServices;
-using DataService.Context;
-using DataService.Repository;
+using DataAccess.Context;
+using DataAccess.Repository;
 using Configuration;
 
 namespace TChat;
@@ -32,7 +32,7 @@ public partial class App : PrismApplication
         // Database
         containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext("mongodb://localhost:27017", "mySecondDatabase"));
         containerRegistry.Register(typeof(IMongoDbRepository), typeof(MongoDbRepository));
-        containerRegistry.Register(typeof(IDataService), typeof(DataService.Services.DataService));
+        containerRegistry.Register(typeof(IDataService), typeof(DataService));
 
         var originalConfig = new AppConfig();
         var tempConfig         = originalConfig.Clone();

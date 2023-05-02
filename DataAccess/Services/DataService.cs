@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace DataService.Services;
+namespace DataAccess.Services;
 
 public class DataService : IDataService
 {

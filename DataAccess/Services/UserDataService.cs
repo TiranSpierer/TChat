@@ -5,7 +5,7 @@ using Core.Interfaces.DataServices;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DataService.Services;
+namespace DataAccess.Services;
 
 public class UserDataService : IUserDataService
 {

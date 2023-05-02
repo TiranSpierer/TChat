@@ -1,7 +1,7 @@
 ﻿using Core.Interfaces.DataServices;
 using MongoDB.Driver;
 
-namespace DataService.Context;
+namespace DataAccess.Context;
 
 public class MongoDbContext : IMongoDbContext
 {
