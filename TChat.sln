@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.DataModels", "Core.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExportService", "ExportService\ExportService.csproj", "{1A29DF7F-B956-4A67-8225-1377FF379586}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataService", "DataService\DataService.csproj", "{8F7ABC03-95C8-4024-AA21-D62240F42F10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataService\DataAccess.csproj", "{8F7ABC03-95C8-4024-AA21-D62240F42F10}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatService", "ChatService\ChatService.csproj", "{B799D97A-91B5-4F6D-881A-1E1C981B5291}"
 EndProject
@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatServerApp", "ChatServer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatClient", "WpfApp1\ChatClient.csproj", "{60B8ADC4-EE73-4840-A98A-E8606A7D9D14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Net", "Core.Net\Core.Net.csproj", "{40816101-CF84-4F43-920F-BF8AAAB15353}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Net", "Core.Net\Core.Net.csproj", "{40816101-CF84-4F43-920F-BF8AAAB15353}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration", "AppConfig\Configuration.csproj", "{4B798857-73D5-4F8F-B1BA-462D0CB75BC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{40816101-CF84-4F43-920F-BF8AAAB15353}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40816101-CF84-4F43-920F-BF8AAAB15353}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40816101-CF84-4F43-920F-BF8AAAB15353}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B798857-73D5-4F8F-B1BA-462D0CB75BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B798857-73D5-4F8F-B1BA-462D0CB75BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B798857-73D5-4F8F-B1BA-462D0CB75BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B798857-73D5-4F8F-B1BA-462D0CB75BC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{5270E6ED-123C-4457-85E2-1D9E9AB60004} = {71508533-A80F-49F7-BB08-73B583E0349D}
 		{60B8ADC4-EE73-4840-A98A-E8606A7D9D14} = {D6F09B01-74FF-4058-8206-96540136F1B2}
 		{40816101-CF84-4F43-920F-BF8AAAB15353} = {5D7F215D-964C-41BD-924E-B12DEFDB4863}
+		{4B798857-73D5-4F8F-B1BA-462D0CB75BC3} = {3940F652-B674-4DED-BD75-9234BD0BF180}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {18529F02-821D-4A29-8328-EE54F8FDD205}

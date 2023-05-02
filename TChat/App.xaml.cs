@@ -1,4 +1,5 @@
-﻿using Prism.Ioc;
+﻿using System.Diagnostics;
+using Prism.Ioc;
 using Prism.Unity;
 using System.Windows;
 using Core.Interfaces;
@@ -10,6 +11,7 @@ using DataService.Services;
 using Core.Interfaces.DataServices;
 using DataService.Context;
 using DataService.Repository;
+using Configuration;
 
 namespace TChat;
 
@@ -31,6 +33,14 @@ public partial class App : PrismApplication
         containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext("mongodb://localhost:27017", "mySecondDatabase"));
         containerRegistry.Register(typeof(IMongoDbRepository), typeof(MongoDbRepository));
         containerRegistry.Register(typeof(IDataService), typeof(DataService.Services.DataService));
+
+        var originalConfig = new AppConfig();
+        var tempConfig         = originalConfig.Clone();
+
+        var x      = tempConfig.MongoDbName;
+        //tempConfig.MongoDbName = "changed";
+
+        //originalConfig.SaveConfiguration(tempConfig);
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

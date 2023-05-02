@@ -11,14 +11,24 @@
     <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
     <PackageReference Include="Prism.Core" Version="8.1.97" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
+
+
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AppConfig\Configuration.csproj" />
     <ProjectReference Include="..\ChatService\ChatService.csproj" />
     <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
     <ProjectReference Include="..\Core.State\Core.State.csproj" />
-    <ProjectReference Include="..\DataService\DataService.csproj" />
+    <ProjectReference Include="..\DataService\DataAccess.csproj" />
     <ProjectReference Include="..\ExportService\ExportService.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<None Update="appsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 
 </Project>

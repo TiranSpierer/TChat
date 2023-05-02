@@ -28,23 +28,6 @@ public class LoginViewModel : BaseViewModel
         _loginCommand       = new DelegateCommand(ExecuteLogin, CanExecuteLogin);
         _userDataService    = userDataService;
         _dataService = dataService;
-
-        _ = DoSomething();
-    }
-
-    private async Task DoSomething()
-    {
-        await _dataService.AddUserAsync(new User()
-        {
-            Username = "Tiran"
-        });
-
-        var x = await _dataService.GetAllUsersAsync();
-
-        foreach (var y in x)
-        {
-            Debug.WriteLine(y.Username);
-        }
     }
 
 
