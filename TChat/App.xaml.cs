@@ -28,9 +28,9 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
 
         // Database
-        containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext("mongodb://localhost:27017", "myDatabase"));
+        containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext("mongodb://localhost:27017", "mySecondDatabase"));
         containerRegistry.Register(typeof(IMongoDbRepository), typeof(MongoDbRepository));
-        containerRegistry.Register(typeof(IMongoDbDataService), typeof(MongoDbDataService));
+        containerRegistry.Register(typeof(IDataService), typeof(DataService.Services.DataService));
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

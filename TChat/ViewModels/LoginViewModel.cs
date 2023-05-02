@@ -16,30 +16,30 @@ namespace TChat.ViewModels;
 
 public class LoginViewModel : BaseViewModel
 {
-    private IRegionManager _regionManager;
-    private DelegateCommand _loginCommand;
-    private IUserDataService _userDataService;
-    private IMongoDbDataService _mongoDbDataService;
+    private readonly IRegionManager      _regionManager;
+    private          DelegateCommand     _loginCommand;
+    private readonly IUserDataService    _userDataService;
+    private readonly IDataService _dataService;
 
-    public LoginViewModel(IRegionManager regionManager, IUserDataService userDataService, IMongoDbDataService mongoDbDataService)
+    public LoginViewModel(IRegionManager regionManager, IUserDataService userDataService, IDataService dataService)
     {
         _regionManager = regionManager;
 
         _loginCommand       = new DelegateCommand(ExecuteLogin, CanExecuteLogin);
         _userDataService    = userDataService;
-        _mongoDbDataService = mongoDbDataService;
+        _dataService = dataService;
 
         _ = DoSomething();
     }
 
     private async Task DoSomething()
     {
-        await _mongoDbDataService.AddUserAsync(new User()
+        await _dataService.AddUserAsync(new User()
         {
-            Username = "Tyrone"
+            Username = "Tiran"
         });
 
-        var x = await _mongoDbDataService.GetAllUsersAsync();
+        var x = await _dataService.GetAllUsersAsync();
 
         foreach (var y in x)
         {

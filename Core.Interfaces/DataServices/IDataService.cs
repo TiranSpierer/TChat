@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.DataServices;
 
-public interface IMongoDbDataService
+public interface IDataService
 {
     Task<IEnumerable<User>> GetAllUsersAsync();
     Task                    AddUserAsync(User user);

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataService.Services;
 
-public class MongoDbDataService : IMongoDbDataService
+public class DataService : IDataService
 {
     private readonly IMongoDbRepository _repository;
 
-    public MongoDbDataService(IMongoDbRepository repository)
+    public DataService(IMongoDbRepository repository)
     {
         _repository = repository;
     }

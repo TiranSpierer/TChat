@@ -66,7 +66,6 @@ public class MongoDbRepository : IMongoDbRepository
     private IMongoCollection<T> GetCollection<T>()
     {
         var collectionName = typeof(T).Name.ToLower();
-        Debug.WriteLine($"Getting collection for {collectionName}");
         return _dbContext.GetCollection<T>(collectionName);
     }
 }
