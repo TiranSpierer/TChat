@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Core.Interfaces.DataServices;
 
-public interface IMongoDbDataService<T> where T : IMongoDocument
+public interface IMongoDbDataService
 {
-    Task Add(T item);
-    Task<T> GetById(string id);
-    Task<List<T>> GetAll();
-    Task Update(T item);
-    Task Delete(T item);
+    Task<IEnumerable<User>> GetAllUsersAsync();
+    Task                    AddUserAsync(User user);
 }

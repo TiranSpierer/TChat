@@ -2,29 +2,37 @@
 using Core.Interfaces.DataServices;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace DataService.Services;
 
-public class MongoDbDataService
+public class MongoDbDataService : IMongoDbDataService
 {
-    private readonly IMongoDbContext _dbContext;
+    private readonly IMongoDbRepository _repository;
 
-    public MongoDbDataService(IMongoDbContext dbContext)
+    public MongoDbDataService(IMongoDbRepository repository)
     {
-        _dbContext = dbContext;
+        _repository = repository;
     }
 
-    public async Task<List<T>> GetAll<T>() where T : IMongoDocument
+    public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        var collection = _dbContext.GetCollection<T>(typeof(T).Name.ToLower());
-        var result = await collection.FindAsync(new BsonDocument());
-        return await result.ToListAsync();
+        return await _repository.GetAllAsync<User>();
     }
 
-    public async void X()
+    public async Task AddUserAsync(User user)
     {
-        await GetAll<User>();
+        try
+        {
+            await _repository.AddAsync(user);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine($"Error adding user: {ex.Message}");
+            throw;
+        }
     }
 }

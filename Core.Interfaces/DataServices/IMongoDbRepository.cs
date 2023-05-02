@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Core.DataModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Core.Interfaces.DataServices;
 
-public interface IMongoDbRepository<T>
+public interface IMongoDbRepository
 {
-    Task<IEnumerable<T>> GetAll();
-    Task<T>              GetById(string id);
-    Task                 Add(T          item);
-    Task<bool>           Update(string  id, T item);
-    Task<bool>           Delete(string  id);
+    Task<IEnumerable<T>> GetAllAsync<T>() where T : IMongoDocument;
+
+    Task<T> GetByIdAsync<T>(string id) where T : IMongoDocument;
+
+    Task AddAsync<T>(T item) where T : IMongoDocument;
+
+    Task<bool> UpdateAsync<T>(string id, T item) where T : IMongoDocument;
+
+    Task<bool> DeleteAsync<T>(string id) where T : IMongoDocument;
 }
