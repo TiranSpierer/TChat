@@ -3,6 +3,9 @@ using Core.State;
 using Prism.Commands;
 using Prism.Regions;
 using System;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using Configuration;
 using Serilog;
 using ZstdSharp;
 using Serilog.Context;
@@ -17,24 +20,16 @@ public class LoginViewModel : BaseViewModel
     private readonly IDataService            _dataService;
     private readonly ILogger _logger;
 
-    public LoginViewModel(IRegionManager regionManager, IUserDataService userDataService, IDataService dataService, ILogger logger)
+    public LoginViewModel(IRegionManager regionManager, IUserDataService userDataService, IDataService dataService, ILogger logger, AppConfig appConfig)
     {
         _regionManager = regionManager;
 
-        _loginCommand    = new DelegateCommand(ExecuteLogin, CanExecuteLogin);
-        _userDataService = userDataService;
-        _dataService     = dataService;
-        _logger     = logger;
+        _loginCommand         = new DelegateCommand(ExecuteLogin, CanExecuteLogin);
+        _userDataService      = userDataService;
+        _dataService          = dataService;
+        _logger               = logger;
 
-        try
-        {
-            var y = 0;
-            var x = 1 / y;
-        }
-        catch(Exception ex)
-        {
-            _logger.ForContext<LoginViewModel>().Information(ex, "hello from messageTemplate");
-        }
+        _logger.ForContext<LoginViewModel>().Information("Entered LoginViewModel");
     }
 
 

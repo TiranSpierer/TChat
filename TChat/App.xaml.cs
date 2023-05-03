@@ -44,13 +44,14 @@ public partial class App : PrismApplication
 
     private void RegisterConfiguration(IContainerRegistry containerRegistry)
     {
-        var configFilePath = "Configuration\\appsettings.json";
+        const string configFilePath      = "Configuration\\appsettings.json";
+        var          environmentFilePath = $"Configuration\\appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "development"}.json";
         containerRegistry.RegisterSingleton<IConfiguration>(c =>
         {
             var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(configFilePath, optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", optional: true, reloadOnChange: true);
+                .AddJsonFile(configFilePath,      optional: false, reloadOnChange: true)
+                .AddJsonFile(environmentFilePath, optional: true,  reloadOnChange: true);
             return configurationBuilder.Build();
         });
 
