@@ -6,14 +6,12 @@ namespace Configuration;
 
 public class AppConfig
 {
-    public static string _configFilePath = "Configuration\\appsettings.json";
+    private static string _configFilePath = "Configuration\\appsettings.json";
 
     public AppConfig(IConfiguration configuration)
     {
         InitProperties();
         configuration.Bind(this);
-        configuration.GetSection(nameof(AppBehavior)).Bind(AppBehavior);
-
     }
 
     public AppBehavior AppBehavior { get; set; }

@@ -29,6 +29,19 @@ public partial class App : PrismApplication
 
     protected override void RegisterTypes(IContainerRegistry containerRegistry)
     {
+        RegisterConfiguration(containerRegistry);
+        RegisterServices(containerRegistry);
+        RegisterDatabase(containerRegistry);
+    }
+
+    protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+    {
+        base.ConfigureModuleCatalog(moduleCatalog);
+        moduleCatalog.AddModule<MainModule>();
+    }
+
+    private void RegisterConfiguration(IContainerRegistry containerRegistry)
+    {
         var configFilePath = "Configuration\\appsettings.json";
         containerRegistry.RegisterSingleton<IConfiguration>(c =>
         {
@@ -40,24 +53,20 @@ public partial class App : PrismApplication
         });
 
         containerRegistry.RegisterSingleton<AppConfig>();
-        var appConfig = containerRegistry.GetContainer().Resolve<AppConfig>();
+    }
 
-        // Services
+    private void RegisterServices(IContainerRegistry containerRegistry)
+    {
         containerRegistry.RegisterSingleton<IChatService, LocalChatService>();
         containerRegistry.RegisterSingleton<IExportChatService, ExportChatService>();
         containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
-
-        // Database
-        containerRegistry.Register<IMongoDbContext>(c => new MongoDbContext(appConfig.AppBehavior.ConnectionString, appConfig.AppBehavior.ConnectionString));
-        containerRegistry.Register(typeof(IMongoDbRepository), typeof(MongoDbRepository));
-        containerRegistry.Register(typeof(IDataService), typeof(DataService));
-
-        var x = appConfig.AppBehavior.ConnectionString;
     }
 
-    protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
+    private void RegisterDatabase(IContainerRegistry containerRegistry)
     {
-        base.ConfigureModuleCatalog(moduleCatalog);
-        moduleCatalog.AddModule<MainModule>();
+        var appConfig = containerRegistry.GetContainer().Resolve<AppConfig>();
+        containerRegistry.RegisterSingleton<IMongoDbContext>(c => new MongoDbContext(appConfig.AppBehavior.ConnectionString, appConfig.AppBehavior.ConnectionString));
+        containerRegistry.RegisterSingleton(typeof(IMongoDbRepository), typeof(MongoDbRepository));
+        containerRegistry.RegisterSingleton(typeof(IDataService), typeof(DataService));
     }
 }
