@@ -1,29 +1,32 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Microsoft.Extensions.Configuration.Json;
 
 namespace Configuration;
 
 public class AppConfig
 {
-    private readonly string _configFilePath = "appsettings.json";
-    private readonly IConfigurationRoot _configuration;
+    public static string _configFilePath = "Configuration\\appsettings.json";
 
-
-    public AppConfig()
+    public AppConfig(IConfiguration configuration)
     {
-        _configuration = new ConfigurationBuilder()
-                        .SetBasePath(Directory.GetCurrentDirectory())
-                        .AddJsonFile(_configFilePath, optional: false, reloadOnChange: true)
-                        .Build();
-        _configuration.Bind(this);
+        InitProperties();
+        configuration.Bind(this);
+        configuration.GetSection(nameof(AppBehavior)).Bind(AppBehavior);
+
+    }
+
+    public AppBehavior AppBehavior { get; set; }
+
+    public void InitProperties()
+    {
+        AppBehavior = new AppBehavior();
     }
 
     public void SaveConfiguration(AppConfig appConfig)
     {
         var json = JsonConvert.SerializeObject(appConfig);
         File.WriteAllText(_configFilePath, json);
-        _configuration.Reload();
     }
 
     public AppConfig Clone()
@@ -32,7 +35,4 @@ public class AppConfig
         var configApp  = JsonConvert.DeserializeObject<AppConfig>(configJson);
         return configApp ?? throw new InvalidOperationException();
     }
-
-    public string MongoDbConnectionString { get; set; }
-    public string MongoDbName { get; set; }
 }
