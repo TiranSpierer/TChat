@@ -17,8 +17,6 @@ using System.IO;
 using System;
 using Serilog;
 using ILogger = Serilog.ILogger;
-using Serilog.Enrichers.GlobalLogContext;
-using Serilog.Events;
 
 namespace TChat;
 
