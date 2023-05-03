@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.Unity;
 using System.Windows;
 using Core.Interfaces;
@@ -16,6 +15,10 @@ using Unity;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using System;
+using Serilog;
+using ILogger = Serilog.ILogger;
+using Serilog.Enrichers.GlobalLogContext;
+using Serilog.Events;
 
 namespace TChat;
 
@@ -31,7 +34,8 @@ public partial class App : PrismApplication
     {
         RegisterConfiguration(containerRegistry);
         RegisterServices(containerRegistry);
-        RegisterDatabase(containerRegistry);
+        RegisterDatabase(containerRegistry, containerRegistry.GetContainer().Resolve<AppConfig>());
+        RegisterLogger(containerRegistry, containerRegistry.GetContainer().Resolve<IConfiguration>());
     }
 
     protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
@@ -52,7 +56,9 @@ public partial class App : PrismApplication
             return configurationBuilder.Build();
         });
 
-        containerRegistry.RegisterSingleton<AppConfig>();
+        
+        var config    = containerRegistry.GetContainer().Resolve<IConfiguration>();
+        containerRegistry.RegisterSingleton<AppConfig>(c => new AppConfig(config, configFilePath));
     }
 
     private void RegisterServices(IContainerRegistry containerRegistry)
@@ -62,11 +68,19 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
     }
 
-    private void RegisterDatabase(IContainerRegistry containerRegistry)
+    private void RegisterDatabase(IContainerRegistry containerRegistry, AppConfig appConfig)
     {
-        var appConfig = containerRegistry.GetContainer().Resolve<AppConfig>();
         containerRegistry.RegisterSingleton<IMongoDbContext>(c => new MongoDbContext(appConfig.AppBehavior.ConnectionString, appConfig.AppBehavior.ConnectionString));
         containerRegistry.RegisterSingleton(typeof(IMongoDbRepository), typeof(MongoDbRepository));
         containerRegistry.RegisterSingleton(typeof(IDataService), typeof(DataService));
+    }
+
+    private void RegisterLogger(IContainerRegistry containerRegistry, IConfiguration config)
+    {
+        var loggerConfiguration = new LoggerConfiguration()
+                                 .ReadFrom.Configuration(config)
+                                 .CreateLogger();
+
+        containerRegistry.RegisterInstance<ILogger>(loggerConfiguration);
     }
 }

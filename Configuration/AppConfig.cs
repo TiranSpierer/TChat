@@ -1,20 +1,22 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace Configuration;
 
 public class AppConfig
 {
-    private static string _configFilePath = "Configuration\\appsettings.json";
+    private readonly string _configFilePath;
 
-    public AppConfig(IConfiguration configuration)
+    public AppConfig(IConfiguration configuration, string configFilePath)
     {
+        _configFilePath = configFilePath;
         InitProperties();
         configuration.Bind(this);
+        var x = AppBehavior;
     }
 
-    public AppBehavior AppBehavior { get; set; }
+    public AppBehavior          AppBehavior { get; set; }
+    public SerilogConfig Serilog     { get; set; }
 
     public void InitProperties()
     {
@@ -24,12 +26,12 @@ public class AppConfig
     public void SaveConfiguration(AppConfig appConfig)
     {
         var json = JsonConvert.SerializeObject(appConfig);
-        File.WriteAllText(_configFilePath, json);
+        System.IO.File.WriteAllText(_configFilePath, json);
     }
 
     public AppConfig Clone()
     {
-        var configJson = File.ReadAllText(_configFilePath);
+        var configJson = System.IO.File.ReadAllText(_configFilePath);
         var configApp  = JsonConvert.DeserializeObject<AppConfig>(configJson);
         return configApp ?? throw new InvalidOperationException();
     }
