@@ -17,6 +17,7 @@ using System.IO;
 using System;
 using Serilog;
 using ILogger = Serilog.ILogger;
+using Core.StateMachine;
 
 namespace TChat;
 
@@ -70,6 +71,7 @@ public partial class App : PrismApplication
         containerRegistry.RegisterSingleton<IChatService, LocalChatService>();
         containerRegistry.RegisterSingleton<IExportChatService, ExportChatService>();
         containerRegistry.RegisterSingleton<IUserDataService, UserDataService>();
+        containerRegistry.RegisterSingleton<MyStateMachine>();
     }
 
     private void RegisterDatabase(IContainerRegistry containerRegistry, AppConfig appConfig)

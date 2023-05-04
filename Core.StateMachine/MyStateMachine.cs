@@ -1,4 +1,6 @@
-﻿using Stateless;
+﻿using Core.LoggerExtensions;
+using Serilog;
+using Stateless;
 using static Core.StateMachine.States;
 using static Core.StateMachine.Triggers;
 
@@ -9,14 +11,16 @@ public class MyStateMachine
     private readonly StateMachine<ChatState, ChatTrigger>       _chatMachine;
     private readonly StateMachine<SystemState, SystemTrigger>   _systemMachine;
     private readonly StateMachine<BatteryState, BatteryTrigger> _batteryMachine;
+    private readonly ILogger _logger;
 
-    public MyStateMachine()
+    public MyStateMachine(ILogger _logger)
     {
         _chatMachine    = new StateMachine<ChatState, ChatTrigger>(ChatState.Uninitialized);
         _systemMachine  = new StateMachine<SystemState, SystemTrigger>(SystemState.Idle);
         _batteryMachine = new StateMachine<BatteryState, BatteryTrigger>(BatteryState.Full);
 
         ConfigureMachines();
+        this._logger = _logger;
     }
 
     #region Public Properties
@@ -33,6 +37,7 @@ public class MyStateMachine
 
     public void TransitionToChatState(ChatTrigger trigger)
     {
+        _logger.AddContext().Information($"ChatStateMachine Triggering '{trigger}'");
         _chatMachine.Fire(trigger);
     }
 
@@ -152,8 +157,7 @@ public class MyStateMachine
                        .OnExit(CancelLowBatteryNotification)
                        .OnEntryFrom(BatteryTrigger.BatteryCritical, EnterPowerSaveMode)
                        .OnExit(ExitPowerSaveMode)
-                       .Permit(BatteryTrigger.BatteryCritical, BatteryState.Critical)
-                       .PermitIf(BatteryTrigger.BatteryLow, BatteryState.Low, IsBatteryCharging);
+                       .Permit(BatteryTrigger.BatteryCritical, BatteryState.Critical);
 
         _batteryMachine.Configure(BatteryState.Critical)
                        .OnEntry(SendCriticalBatteryNotification)
@@ -161,6 +165,12 @@ public class MyStateMachine
                        .OnExit(ExitPowerSaveMode)
                        .Ignore(BatteryTrigger.BatteryCritical)
                        .PermitIf(BatteryTrigger.BatteryLow, BatteryState.Low, IsBatteryCharging);
+
+        _batteryMachine.OnUnhandledTrigger((state, trigger) =>
+        {
+            _logger.Warning($"Unhandled trigger '{trigger}' in state '{state}'");
+            TransitionToBatteryState(BatteryTrigger.BatteryCritical);
+        });
     }
 
     #endregion

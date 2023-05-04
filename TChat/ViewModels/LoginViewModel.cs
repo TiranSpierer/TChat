@@ -6,8 +6,8 @@ using Configuration;
 using Core.LoggerExtensions;
 using Core.StateMachine;
 using Serilog;
-//using static Core.StateMachine.States;
-//using static Core.StateMachine.Triggers;
+using static Core.StateMachine.States;
+using static Core.StateMachine.Triggers;
 
 namespace TChat.ViewModels;
 
@@ -18,39 +18,30 @@ public class LoginViewModel : BaseViewModel
     private readonly IUserDataService        _userDataService;
     private readonly IDataService            _dataService;
     private readonly ILogger _logger;
-
-    public LoginViewModel(IRegionManager regionManager, IUserDataService userDataService, IDataService dataService, ILogger logger, AppConfig appConfig)
+    private readonly MyStateMachine _stateMachine;
+    public LoginViewModel(IRegionManager regionManager, IUserDataService userDataService, IDataService dataService, ILogger logger, AppConfig appConfig, MyStateMachine stateMachine)
     {
         _regionManager = regionManager;
 
-        _loginCommand         = new DelegateCommand(ExecuteLogin, CanExecuteLogin);
-        _userDataService      = userDataService;
-        _dataService          = dataService;
-        _logger               = logger;
+        _loginCommand = new DelegateCommand(ExecuteLogin, CanExecuteLogin);
+        _userDataService = userDataService;
+        _dataService = dataService;
+        _logger = logger;
 
         _logger.AddContext().Information("Entered LoginViewModel");
 
+        _stateMachine = stateMachine;
         TestStuff();
     }
 
     private void TestStuff()
     {
-        //var stateMachine = new MyStateMachine();
-
-        //stateMachine.TransitionToChatState(ChatTrigger.Initialize);
-        //stateMachine.TransitionToChatState(ChatTrigger.Connect);
-
-        //// Check if the chat connection is successful...
-        //if (stateMachine.CurrentChatState == ChatState.Connected)
-        //{
-        //    // Send a message...
-        //}
-
-        //stateMachine.TransitionToChatState(ChatTrigger.Disconnect);
+        _stateMachine.TransitionToChatState(ChatTrigger.Initialize);
+        _stateMachine.TransitionToChatState(ChatTrigger.Connect);
+        _stateMachine.TransitionToChatState(ChatTrigger.Disconnect);
 
     }
-
-
+    
     public DelegateCommand LoginCommand { get => _loginCommand; set => _loginCommand = value; }
 
     private void ExecuteLogin()
