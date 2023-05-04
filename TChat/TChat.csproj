@@ -43,7 +43,7 @@
     <ProjectReference Include="..\ChatService\ChatService.csproj" />
     <ProjectReference Include="..\Core.Interfaces\Core.Interfaces.csproj" />
     <ProjectReference Include="..\Core.LoggerExtentions\Core.LoggerExtensions.csproj" />
-    <ProjectReference Include="..\Core.State\Core.StateMachine.csproj" />
+    <ProjectReference Include="..\Core.StateMachine\Core.StateMachine.csproj" />
     <ProjectReference Include="..\ExportService\ExportService.csproj" />
 	<ProjectReference Include="..\DataAccess\DataAccess.csproj" />
 	<ProjectReference Include="..\Configuration\Configuration.csproj" />
