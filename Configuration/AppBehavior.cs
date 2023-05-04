@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-
-namespace Configuration;
+﻿namespace Configuration;
 
 public class AppBehavior
 {

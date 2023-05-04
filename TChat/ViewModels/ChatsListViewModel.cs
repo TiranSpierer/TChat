@@ -1,9 +1,9 @@
 ﻿using Core.DataModels;
-using Core.State;
 using Prism.Commands;
 using Prism.Regions;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Core.StateMachine;
 
 namespace TChat.ViewModels;
 

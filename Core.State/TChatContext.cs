@@ -1,6 +1,6 @@
 ﻿using Core.DataModels;
 
-namespace Core.State;
+namespace Core.StateMachine;
 
 public class TChatContext
 {

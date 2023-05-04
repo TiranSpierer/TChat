@@ -1,5 +1,4 @@
 ﻿using Core.DataModels;
-using Core.State;
 using Prism.Commands;
 using Prism.Regions;
 using System;
@@ -8,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Documents;
+using Core.StateMachine;
 
 namespace TChat.ViewModels;
 

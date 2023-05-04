@@ -1,6 +1,4 @@
-﻿using Serilog.Events;
-
-namespace Configuration;
+﻿namespace Configuration;
 
 public class Args
 {

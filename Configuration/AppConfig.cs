@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace Configuration;
 
@@ -18,9 +18,9 @@ public class AppConfig
     public AppBehavior AppBehavior { get; set; } = null!;
     public Serilog     Serilog     { get; set; } = null!;
 
-    public void SaveConfiguration(AppConfig appConfig)
+    public void Save(AppConfig appConfig)
     {
-        var json = JsonConvert.SerializeObject(appConfig);
+        var json = JsonSerializer.Serialize(appConfig, new JsonSerializerOptions { WriteIndented = true });
         File.WriteAllText(_configFilePath, json);
     }
 }

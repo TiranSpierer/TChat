@@ -1,14 +1,11 @@
 ﻿using Core.Interfaces.DataServices;
-using Core.State;
 using Prism.Commands;
 using Prism.Regions;
 using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Configuration;
+using Core.LoggerExtensions;
+using Core.StateMachine;
 using Serilog;
-using ZstdSharp;
-using Serilog.Context;
 
 namespace TChat.ViewModels;
 
@@ -29,7 +26,7 @@ public class LoginViewModel : BaseViewModel
         _dataService          = dataService;
         _logger               = logger;
 
-        _logger.ForContext<LoginViewModel>().Information("Entered LoginViewModel");
+        _logger.AddContext().Information("Entered LoginViewModel");
     }
 
 
