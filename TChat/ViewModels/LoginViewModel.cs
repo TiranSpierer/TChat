@@ -6,6 +6,8 @@ using Configuration;
 using Core.LoggerExtensions;
 using Core.StateMachine;
 using Serilog;
+using static Core.StateMachine.States;
+using static Core.StateMachine.Triggers;
 
 namespace TChat.ViewModels;
 
@@ -27,6 +29,25 @@ public class LoginViewModel : BaseViewModel
         _logger               = logger;
 
         _logger.AddContext().Information("Entered LoginViewModel");
+
+        TestStuff();
+    }
+
+    private void TestStuff()
+    {
+        var stateMachine = new MyStateMachine();
+
+        stateMachine.TransitionToChatState(ChatTrigger.Initialize);
+        stateMachine.TransitionToChatState(ChatTrigger.Connect);
+
+        // Check if the chat connection is successful...
+        if (stateMachine.CurrentChatState == ChatState.Connected)
+        {
+            // Send a message...
+        }
+
+        stateMachine.TransitionToChatState(ChatTrigger.Disconnect);
+
     }
 
 
